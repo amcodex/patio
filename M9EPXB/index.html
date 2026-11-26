@@ -1,0 +1,172 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Patio Azul</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: one narrow phone-first column; the before/after photo is the hero, the WhatsApp action sits right under it */
+:root{
+  --bg:#f2f6f5; --surface:#ffffff; --ink:#0f2a31; --muted:#4f6a70; --line:#d6e2e0;
+  --water:#0f8f8c; --water-ink:#ffffff; --sun:#c9821f; --wa:#1f8f4e; --wa-ink:#ffffff;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --radius:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0b1a1e; --surface:#12262b; --ink:#e6f1ef; --muted:#9ab3b6; --line:#24404a;
+  --water:#3cc3bd; --water-ink:#062124; --sun:#e8a64a; --wa:#35b56c; --wa-ink:#06200f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0b1a1e; --surface:#12262b; --ink:#e6f1ef; --muted:#9ab3b6; --line:#24404a;
+  --water:#3cc3bd; --water-ink:#062124; --sun:#e8a64a; --wa:#35b56c; --wa-ink:#06200f; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+.wrap{max-width:720px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:20px 48px;display:flex;flex-direction:column;gap:28px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
+.brand i{width:22px;height:14px;border-radius:4px;background:var(--water);display:inline-block}
+.code{font-size:.78rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-variant-numeric:tabular-nums}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,6vw,2.7rem);line-height:1.08;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.lead{margin:8px 0 0;color:var(--muted);max-width:60ch}
+/* before / after */
+.ba{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:16/9;max-width:100%;background:var(--line);touch-action:pan-y}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;user-select:none;-webkit-user-drag:none}
+.ba .after{clip-path:inset(0 0 0 var(--cut,50%))}
+.ba .handle{position:absolute;top:0;bottom:0;left:var(--cut,50%);width:2px;background:#fff;transform:translateX(-1px);pointer-events:none;box-shadow:0 0 0 1px rgba(0,0,0,.15)}
+.ba .handle::after{content:"";position:absolute;top:50%;left:50%;width:34px;height:34px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);box-shadow:0 2px 8px rgba(0,0,0,.3);background-image:linear-gradient(90deg,transparent 40%,#0f2a31 40%,#0f2a31 46%,transparent 46%,transparent 54%,#0f2a31 54%,#0f2a31 60%,transparent 60%)}
+.ba .tag{position:absolute;top:10px;font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:rgba(10,25,28,.72);color:#fff;padding:4px 9px;border-radius:999px}
+.ba .t-before{left:10px}.ba .t-after{right:10px}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.ba input:focus-visible + .handle{outline:3px solid var(--sun)}
+.caption{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.8rem;color:var(--muted);margin-top:8px}
+.toggles{display:flex;gap:8px}
+.toggles button{font:inherit;font-size:.8rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:4px 12px;cursor:pointer}
+.toggles button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+/* spec */
+.spec{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px 18px}
+.spec div{min-width:0}
+.spec dt{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.spec dd{margin:2px 0 0;font-weight:600;font-variant-numeric:tabular-nums}
+.price{grid-column:1/-1;border-top:1px solid var(--line);padding-top:12px;display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.price strong{font-family:var(--display);font-size:1.6rem;font-weight:800;color:var(--water);font-variant-numeric:tabular-nums}
+.price small{color:var(--muted);font-size:.75rem}
+/* cta */
+.cta{display:flex;flex-direction:column;gap:12px}
+.wa{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--wa);color:var(--wa-ink);text-decoration:none;font-weight:600;font-size:1.05rem;padding:16px 20px;border-radius:12px}
+.wa:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+.wa svg{width:22px;height:22px;fill:currentColor}
+.msg{background:var(--surface);border:1px dashed var(--line);border-radius:10px;padding:12px 14px;font-size:.9rem;color:var(--muted)}
+.msg b{color:var(--ink);font-weight:600}
+.msg-row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:8px}
+.ghost{font:inherit;font-size:.85rem;background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:6px 12px;cursor:pointer}
+.ghost:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+h2{font-family:var(--display);font-weight:700;font-size:1.25rem;margin:0 0 10px;letter-spacing:-.01em}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:s}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start}
+ol.steps li::before{content:counter(s);width:28px;height:28px;border-radius:50%;background:var(--water);color:var(--water-ink);display:grid;place-items:center;font-weight:600;font-size:.85rem}
+ol.steps b{display:block}
+ol.steps span{color:var(--muted);font-size:.92rem}
+.fine{font-size:.8rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:10px}
+.optout-done{color:var(--ink);font-weight:600}
+a.plain{color:var(--muted)}
+/* panel */
+.panel{display:flex;flex-direction:column;gap:18px}
+.funnel{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.stage{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px}
+.stage .n{font-family:var(--display);font-weight:800;font-size:2rem;font-variant-numeric:tabular-nums;line-height:1}
+.stage .l{font-size:.8rem;color:var(--muted);margin-top:4px}
+.stage .bar{height:6px;border-radius:3px;background:var(--line);margin-top:10px;overflow:hidden}
+.stage .bar i{display:block;height:100%;background:var(--water)}
+.stage.warn .bar i{background:var(--sun)}
+.tbl{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:.85rem;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.status{font-size:.85rem;color:var(--muted)}
+.chip{display:inline-block;font-size:.72rem;padding:2px 8px;border-radius:999px;background:var(--bg);border:1px solid var(--line)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style></head><body>
+
+<div class="wrap" id="home">
+  <header>
+    <div class="brand"><i aria-hidden="true"></i>Patio Azul</div>
+    <div class="code">Código <span id="codeLabel">M9EPXB</span></div>
+  </header>
+
+  <section>
+    <h1>Así quedaría tu patio con piscina</h1>
+    <p class="lead">Diseñamos esta piscina a la medida del espacio libre de tu terreno. Deslizá la imagen para comparar.</p>
+  </section>
+
+  <section aria-label="Comparación antes y después">
+    <div class="ba" id="ba">
+      <img src="antes.jpg" alt="El patio trasero hoy, con césped y sin piscina">
+      <img class="after" src="despues.jpg" alt="El mismo patio con una piscina de 7 por 3,5 metros, deck de piedra y dos reposeras">
+      <span class="tag t-before">Hoy</span><span class="tag t-after">Con piscina</span>
+      <input type="range" id="cut" min="0" max="100" value="50" aria-label="Comparar antes y después">
+      <span class="handle" aria-hidden="true"></span>
+    </div>
+    <div class="caption">
+      <span>Visualización ilustrativa generada a partir de imagen aérea.</span>
+      <span class="toggles"><button type="button" id="showBefore">Hoy</button><button type="button" id="showAfter">Con piscina</button></span>
+    </div>
+  </section>
+
+  <dl class="spec">
+    <div><dt>Piscina</dt><dd>7 × 3,5 m</dd></div>
+    <div><dt>Profundidad</dt><dd>1,20 – 1,50 m</dd></div>
+    <div><dt>Terminación</dt><dd>Deck de piedra, borde blanco</dd></div>
+    <div><dt>Incluye</dt><dd>Filtro y luces LED</dd></div>
+    <div class="price"><span>Inversión estimada desde</span><strong>G 38.000.000*</strong><small>*Precio de ejemplo. El valor final se define en la visita técnica sin costo.</small></div>
+  </dl>
+
+  <section class="cta" aria-labelledby="ctaTitle">
+    <h2 id="ctaTitle">¿Te gustaría tenerla para este verano?</h2>
+    <a class="wa" id="waBtn" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+      Quiero cotizar por WhatsApp
+    </a>
+    <div class="msg">
+      Si el botón no abre WhatsApp, escribí al <b id="waNumberText">+595 981 000 000</b> (número de ejemplo) con este mensaje:
+      <div class="msg-row"><b id="waMsgText"></b><button type="button" class="ghost" id="copyBtn">Copiar mensaje</button></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="howTitle">
+    <h2 id="howTitle">Cómo sigue</h2>
+    <ol class="steps">
+      <li><div><b>Nos escribís por WhatsApp</b><span>Te respondemos el mismo día con un par de preguntas sobre tu patio.</span></div></li>
+      <li><div><b>Visita técnica sin costo</b><span>La constructora mide el terreno, revisa el acceso y te muestra opciones de tamaño y terminación.</span></div></li>
+      <li><div><b>Presupuesto final y obra</b><span>Recibís el precio cerrado y el plazo. Una piscina de fibra se instala en pocos días; una de hormigón, en unas 5 a 6 semanas.</span></div></li>
+    </ol>
+  </section>
+
+  <footer class="fine">
+    <p>Esta página no muestra tu nombre ni tu dirección. Si nos escribís, tu mensaje lo reciben Patio Azul y la constructora asociada, solo para coordinar tu cotización.</p>
+    <div id="optoutBox"><button type="button" class="ghost" id="optoutBtn">No quiero recibir más comunicaciones</button></div>
+    
+  </footer>
+</div>
+
+<script>
+(function(){
+  var WA_NUMBER = "595981000000"; // REEMPLAZAR por el WhatsApp Business real
+  var CODE = "M9EPXB";
+  var MSG = "Hola, vi la piscina en mi patio y quiero una cotización. Código " + CODE + ".";
+  document.getElementById("codeLabel").textContent = CODE;
+  document.getElementById("waMsgText").textContent = "“" + MSG + "”";
+  document.getElementById("waBtn").href = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(MSG);
+  var ba = document.getElementById("ba"), cut = document.getElementById("cut");
+  function setCut(v){ ba.style.setProperty("--cut", v + "%"); cut.value = v; }
+  cut.addEventListener("input", function(){ setCut(cut.value); });
+  document.getElementById("showBefore").addEventListener("click", function(){ setCut(100); });
+  document.getElementById("showAfter").addEventListener("click", function(){ setCut(0); });
+  document.getElementById("copyBtn").addEventListener("click", function(e){
+    var btn = e.currentTarget;
+    function done(t){ btn.textContent = t; setTimeout(function(){ btn.textContent = "Copiar mensaje"; }, 2000); }
+    try { navigator.clipboard.writeText(MSG).then(function(){ done("Mensaje copiado"); }, function(){ done("Copialo a mano"); }); } catch(err){ done("Copialo a mano"); }
+  });
+  document.getElementById("optoutBtn").addEventListener("click", function(){
+    window.open("https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent("No quiero recibir más comunicaciones. Código " + CODE + "."), "_blank");
+    document.getElementById("optoutBox").innerHTML = '<p class="optout-done">Gracias. Envianos ese mensaje y no te vamos a contactar más.</p>';
+  });
+  setCut(50);
+})();
+</script></body></html>
